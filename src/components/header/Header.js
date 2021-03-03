@@ -13,7 +13,7 @@ const Header = () => (
       <SideDrawer />
       <div className="logo">
         <h1>
-          <Link to="/">LEGO STORE</Link>
+          <Link to="/">MUGGLE</Link>
         </h1>
       </div>
       <div className="menu">
