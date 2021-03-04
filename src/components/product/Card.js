@@ -2,16 +2,12 @@ import { Link, graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
 import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
-import Card from "@material-ui/core/Card"
-import CardActionArea from "@material-ui/core/CardActionArea"
-import CardActions from "@material-ui/core/CardActions"
-import CardContent from "@material-ui/core/CardContent"
 import Button from "@material-ui/core/Button"
 import Typography from "@material-ui/core/Typography"
 
 const useStyles = makeStyles({
   text: {
-    fontSize: "15px",
+    fontSize: "13px",
     fontWeight: "500",
   },
 })
@@ -30,7 +26,7 @@ export default function MediaCard() {
               originalSrc
               localFile {
                 childImageSharp {
-                  fixed(width: 200, height: 200) {
+                  fixed(width: 150, height: 150) {
                     ...GatsbyImageSharpFixed_tracedSVG
                   }
                 }
@@ -65,43 +61,43 @@ export default function MediaCard() {
             priceRange,
           },
         }) => (
-          <Card className="card" key={shopifyId}>
-            <Link to={`/product/${handle}/pid=${shopifyId}seller=${vendor}`}>
-              <CardActionArea>
-                <div>
-                  <Img
-                    fixed={firstImage.localFile.childImageSharp.fixed}
-                    alt={title}
-                    key={shopifyId}
-                  />
-                </div>
-                {/* <CardContent >
-                  <Typography
-                    className={classes.text}
-                    gutterBottom
-                    variant="subtitle1"
-                  >
-                    {title}
-                  </Typography>
-                  <Typography
-                    variant="subtitle2"
-                    color="textSecondary"
-                    gutterBottom
-                  >
-                    {vendor}
-                  </Typography>
-                </CardContent> */}
-              </CardActionArea>
-            </Link>
-            <CardActions className="card_lebel">
-              <h5 >
-                ₹{priceRange.minVariantPrice.amount}
-              </h5>
-              <Button size="small" color="primary">
-                Add To Cart
-              </Button>
-            </CardActions>
-          </Card>
+          <div className="card" key={shopifyId}>
+            <div className="img_container">
+              <Link to={`/product/${handle}/pid=${shopifyId}seller=${vendor}`}>
+                <Img
+                  fixed={firstImage.localFile.childImageSharp.fixed}
+                  alt={title}
+                  key={shopifyId}
+                />
+              </Link>
+            </div>
+            <div className="botttom_container">
+              <div className="brand_price">
+                <Typography
+                  variant="subtitle2"
+                  color="textSecondary"
+                  gutterBottom
+                >
+                  {vendor}
+                </Typography>
+                <h6>₹{priceRange.minVariantPrice.amount}</h6>
+              </div>
+              <div className="title">
+                <Typography
+                  className={classes.text}
+                  gutterBottom
+                  variant="subtitle1"
+                >
+                  {title}
+                </Typography>
+              </div>
+            </div>
+            <div className="card_lebel">
+              <span>
+                <Button size="small">Add To Cart</Button>
+              </span>
+            </div>
+          </div>
         )
       )}
     </div>
